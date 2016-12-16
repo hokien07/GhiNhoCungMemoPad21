@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ghi Nho Cung MemoPad</string>
+    <string name="menu_add">Them moi</string>
+    <string name="btnThem">Them</string>
+    <string name="btnHuy">Huy</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+</resources>
