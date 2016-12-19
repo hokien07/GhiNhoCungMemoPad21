@@ -5,4 +5,5 @@
     <string name="btnHuy">Huy</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="menu_save">Save</string>
 </resources>
