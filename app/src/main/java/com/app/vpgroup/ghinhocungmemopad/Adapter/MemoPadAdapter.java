@@ -1,4 +1,4 @@
-package com.app.vpgroup.ghinhocungmemopad;
+package com.app.vpgroup.ghinhocungmemopad.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import com.app.vpgroup.ghinhocungmemopad.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 

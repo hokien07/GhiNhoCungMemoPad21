@@ -1,9 +1,12 @@
-package com.app.vpgroup.ghinhocungmemopad;
+package com.app.vpgroup.ghinhocungmemopad.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.app.vpgroup.ghinhocungmemopad.Database.DBHelper;
+import com.app.vpgroup.ghinhocungmemopad.model.MemoPad;
 
 public class MemoPadModify {
     private DBHelper dbHelper;

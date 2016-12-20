@@ -1,4 +1,4 @@
-package com.app.vpgroup.ghinhocungmemopad;
+package com.app.vpgroup.ghinhocungmemopad.model;
 
 /**
  * Created by HoKien on 12/16/2016.

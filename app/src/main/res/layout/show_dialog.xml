@@ -23,7 +23,7 @@
                 android:layout_height="match_parent" />
 
             <view
-                class="com.app.vpgroup.ghinhocungmemopad.LineEditText"
+                class="com.app.vpgroup.ghinhocungmemopad.CustomView.LineEditText"
                 android:id="@+id/edtTitleNew"
                 android:gravity="start|center"
                 android:layout_weight="3"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content" />
 
             <view
-                class="com.app.vpgroup.ghinhocungmemopad.LineEditText"
+                class="com.app.vpgroup.ghinhocungmemopad.CustomView.LineEditText"
                 android:background="@drawable/boder_layout"
                 android:layout_margin="2dp"
                 android:id="@+id/edtContentNew"

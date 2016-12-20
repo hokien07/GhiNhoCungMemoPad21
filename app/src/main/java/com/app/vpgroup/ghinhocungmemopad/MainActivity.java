@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.app.vpgroup.ghinhocungmemopad.Adapter.MemoPadAdapter;
+import com.app.vpgroup.ghinhocungmemopad.Database.MemoPadModify;
+import com.app.vpgroup.ghinhocungmemopad.model.MemoPad;
 
 import java.util.ArrayList;
 
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     static MemoPadAdapter adapter = null;
     static MemoPadModify memoPadModify;
 
+    int MY_REQUEST_CODE_NEW = 120;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,64 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         AddControl();
         display();
-
-        Intent myIntent = getIntent();
-
-        Bundle myBundle = myIntent.getBundleExtra("memopad");
-        if(myBundle != null){
-            String title  = myBundle.getString("title");
-            String content = myBundle.getString("content");
-
-            MemoPad memoPad = new MemoPad(title, content);
-            memoPadModify.insert(memoPad);
-            display();
-            Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Lỗi thêm!", Toast.LENGTH_SHORT).show();
-        }
-        registerForContextMenu(lv);
+        lvClick();
     }
 
-    public void display(){
-        adapter = new MemoPadAdapter(MainActivity.this, memoPadModify.GetMemoPadList(), true);
-        lv.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.btnAdd){
-            Intent intent = new Intent(MainActivity.this, ThemMoiActivity.class);
-            startActivity(intent);
-
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void AddControl() {
-        lv = (ListView) findViewById(R.id.listview);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                Bundle bundle = new Bundle();
-                Cursor cursor = (Cursor) lv.getItemAtPosition(i);
-                String title = cursor.getString(1);
-                String content = cursor.getString(2);
-                bundle.putString("title", title);
-                bundle.putString("content", content);
-                intent.putExtra("xem", bundle);
-                startActivity(intent);
-            }
-        });
+    private void lvClick() {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -117,8 +69,77 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                Bundle bundle = new Bundle();
+                Cursor cursor = (Cursor) lv.getItemAtPosition(i);
+                String title = cursor.getString(1);
+                String content = cursor.getString(2);
+                bundle.putString("title", title);
+                bundle.putString("content", content);
+                intent.putExtra("xem", bundle);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+    public void display(){
+        adapter = new MemoPadAdapter(MainActivity.this, memoPadModify.GetMemoPadList(), true);
+        lv.setAdapter(adapter);
+    }
+
+    private void AddControl() {
+        lv = (ListView) findViewById(R.id.listview);
         memoPadModify = new MemoPadModify(this);
         mangMemoPad = new ArrayList<MemoPad>();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == MY_REQUEST_CODE_NEW){
+            String title = data.getStringExtra("title");
+            String content = data.getStringExtra("content");
+            MemoPad memoPad = new MemoPad(title, content);
+            memoPadModify.insert(memoPad);
+            display();
+            Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Loi them", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_add,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.btnAdd){
+            Intent intent = new Intent(MainActivity.this, ThemMoiActivity.class);
+            startActivityForResult(intent, MY_REQUEST_CODE_NEW);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 }

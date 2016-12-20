@@ -1,4 +1,4 @@
-package com.app.vpgroup.ghinhocungmemopad;
+package com.app.vpgroup.ghinhocungmemopad.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

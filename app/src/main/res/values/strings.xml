@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">Ghi Nho Cung MemoPad</string>
-    <string name="menu_add">Them moi</string>
-    <string name="btnThem">Them</string>
-    <string name="btnHuy">Huy</string>
+    <string name="app_name">MemoPad 2017</string>
+    <string name="menu_add">Thêm mới</string>
     <string name="action_edit">Edit</string>
+    <string name="btnThem">Thêm</string>
+    <string name="btnHuy">Hủy</string>
     <string name="action_delete">Delete</string>
     <string name="menu_save">Save</string>
+    <string name="menu_update">Cập Nhật</string>
+    <string name="menu_share">Chia Sẻ</string>
 </resources>

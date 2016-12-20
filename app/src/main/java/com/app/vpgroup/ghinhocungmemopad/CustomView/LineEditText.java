@@ -1,4 +1,4 @@
-package com.app.vpgroup.ghinhocungmemopad;
+package com.app.vpgroup.ghinhocungmemopad.CustomView;
 
 import android.content.Context;
 import android.content.res.Resources;
