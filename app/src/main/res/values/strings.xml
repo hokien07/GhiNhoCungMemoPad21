@@ -8,4 +8,7 @@
     <string name="menu_save">Save</string>
     <string name="menu_update">Cập Nhật</string>
     <string name="menu_share">Chia Sẻ</string>
+    <string name="main">Danh sách ghi chú</string>
+    <string name="themmoi">Thêm mới Ghi Chú</string>
+    <string name="thongtinghichu">Thông tin Ghi Chú</string>
 </resources>

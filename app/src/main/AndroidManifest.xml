@@ -18,21 +18,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="@string/main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ThemMoiActivity">
+        <activity android:name=".ThemMoiActivity"
+            android:label="@string/themmoi">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity">
+        <activity android:name=".DetailActivity"
+            android:label="@string/thongtinghichu">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
